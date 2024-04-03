@@ -13,15 +13,8 @@ class PersonController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $user = $request->user();
-
-        if ($user->hasRole('user')) {
-            error_log('Some message here.');
-            return redirect(route('person.create'));
-        }
-
         return Inertia::render('PersonList', [
             'persons' => Person::all(),
         ]);
